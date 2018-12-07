@@ -1,0 +1,101 @@
+@import "foo";
+
+:root {
+    --mainColor: #f00;
+    --mainColorSmall: blue;
+    --mainColorAccent: yellow;
+    --baseFont: 17px;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.main {
+    display: flex;
+}
+
+.aside {
+    flex: 1;
+}
+
+div::placeholder {
+    color: red;
+}
+
+/**/
+
+@custom-media --mobile (width <= 767px);
+
+@custom-media --tablet (width >= 768px) and (width <= 1024px);
+
+@media (--mobile) {
+    .text {
+        color: var(--mainColorSmall);
+    }
+}
+
+@media (--mobile) {
+    .header {
+        color: violet;
+    }
+}
+
+@media (--tablet) {
+    .text {
+        color: var(--mainColor);
+    }
+}
+
+@custom-selector :--hoverActive :hover, :active;
+
+.text:--hoverActive {
+    color: var(--mainColorAccent);
+}
+
+@custom-selector :--statusYes .active, .more;
+
+:--statusYes {
+    font-size: 20px;
+}
+
+/**/
+
+.main {
+    &__title {
+        font-size: var(--baseFont);
+        &_accent {
+            color: aqua;
+        }
+    }
+}
+
+.position {
+    position: absolute 20px * * 0;
+}
+
+.margin {
+    margin: * auto;
+}
+
+.icon {
+    size: 20px;
+}
+
+.color {
+    color: red blue;
+}
+
+.iconBackground {
+    background: resolve('test.png');
+    size: 400px;
+}
+
+.iconBackground {
+    background: inline('test.png');
+    background-size: size('test.png');
+}
+
+.content:matches(:hover, :active, .easy) {
+    opacity: .7;
+}
